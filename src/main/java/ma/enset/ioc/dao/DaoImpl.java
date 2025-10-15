@@ -2,10 +2,11 @@ package ma.enset.ioc.dao;
 
 import org.springframework.stereotype.Component;
 
-@Component("dao")
 public class DaoImpl implements IDao {
     @Override
     public double getData() {
-        return 42.0;
+        System.out.println("version base de donnees");
+        double t = 34;
+        return t;
     }
 }

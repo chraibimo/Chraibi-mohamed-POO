@@ -1,0 +1,2 @@
+ma.enset.ioc.ext.DaoImplV2
+ma.enset.ioc.metier.MetierImpl

@@ -1,26 +1,33 @@
 package ma.enset.ioc.metier;
 
+import ma.enset.ioc.dao.DaoImpl;
 import ma.enset.ioc.dao.IDao;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component("metier")
+@Component
 public class MetierImpl implements IMetier {
-    private IDao dao;
-
-    public MetierImpl() {}
+    private IDao dao; // Couplage faible
 
     @Autowired
-    public MetierImpl(IDao dao) { // injection par constructeur
-        this.dao = dao;
-    }
-
-    public void setDao(IDao dao) { // injection par setter
+    public MetierImpl(@Qualifier("d2") IDao dao) {
         this.dao = dao;
     }
 
     @Override
     public double calcul() {
-        return dao.getData() * 5;
+        double d = dao.getData();
+        double res= d*18;
+        return res;
+    }
+
+    /*
+    Pour Injecter dans la variable dao
+    un objet d'une classe qui implémente l'interface IDao
+     */
+    public void setDao(IDao dao) {
+        this.dao = dao;
     }
 }
